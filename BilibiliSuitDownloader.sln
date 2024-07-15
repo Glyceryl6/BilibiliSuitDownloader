@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilibiliSuitDownloader", "BilibiliSuitDownloader\BilibiliSuitDownloader.csproj", "{F8F69E05-6FDF-4269-85ED-DE6652EA1315}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8F69E05-6FDF-4269-85ED-DE6652EA1315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F69E05-6FDF-4269-85ED-DE6652EA1315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F69E05-6FDF-4269-85ED-DE6652EA1315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F69E05-6FDF-4269-85ED-DE6652EA1315}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
