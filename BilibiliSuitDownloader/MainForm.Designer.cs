@@ -51,10 +51,19 @@ namespace BilibiliSuitDownloader {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.suitDataGrid = new System.Windows.Forms.DataGridView();
+            this.check_for_download = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.item_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.group_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sale_surplus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.collectionDataGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lottery_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,15 +72,6 @@ namespace BilibiliSuitDownloader {
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.check_for_download = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.item_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lottery_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.group_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sale_surplus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suitDataGrid)).BeginInit();
@@ -275,7 +275,7 @@ namespace BilibiliSuitDownloader {
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.suitDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.suitDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.suitDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.check_for_download, this.item_id, this.lottery_id, this.name, this.group_id, this.owner, this.price, this.sale_surplus, this.desc });
+            this.suitDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.check_for_download, this.item_id, this.name, this.group_id, this.owner, this.price, this.sale_surplus, this.desc });
             this.suitDataGrid.Location = new System.Drawing.Point(0, 0);
             this.suitDataGrid.Name = "suitDataGrid";
             this.suitDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -290,6 +290,67 @@ namespace BilibiliSuitDownloader {
             this.suitDataGrid.ShowEditingIcon = false;
             this.suitDataGrid.Size = new System.Drawing.Size(1035, 402);
             this.suitDataGrid.TabIndex = 8;
+            // 
+            // check_for_download
+            // 
+            this.check_for_download.HeaderText = "";
+            this.check_for_download.Name = "check_for_download";
+            this.check_for_download.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.check_for_download.Width = 25;
+            // 
+            // item_id
+            // 
+            this.item_id.HeaderText = "商品ID";
+            this.item_id.Name = "item_id";
+            this.item_id.ReadOnly = true;
+            this.item_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.item_id.Width = 90;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "名称";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 200;
+            // 
+            // group_id
+            // 
+            this.group_id.HeaderText = "分组";
+            this.group_id.Name = "group_id";
+            this.group_id.ReadOnly = true;
+            this.group_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.group_id.Width = 80;
+            // 
+            // owner
+            // 
+            this.owner.HeaderText = "所有者";
+            this.owner.Name = "owner";
+            this.owner.ReadOnly = true;
+            this.owner.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.owner.Width = 150;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "定价";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            this.price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.price.Width = 70;
+            // 
+            // sale_surplus
+            // 
+            this.sale_surplus.HeaderText = "库存";
+            this.sale_surplus.Name = "sale_surplus";
+            this.sale_surplus.ReadOnly = true;
+            this.sale_surplus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.sale_surplus.Width = 70;
+            // 
+            // desc
+            // 
+            this.desc.HeaderText = "描述";
+            this.desc.Name = "desc";
+            this.desc.ReadOnly = true;
+            this.desc.Width = 500;
             // 
             // tabPage2
             // 
@@ -320,7 +381,7 @@ namespace BilibiliSuitDownloader {
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.collectionDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.collectionDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.collectionDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.dataGridViewCheckBoxColumn1, this.dataGridViewTextBoxColumn1, this.dataGridViewTextBoxColumn2, this.Column1, this.dataGridViewTextBoxColumn5, this.dataGridViewTextBoxColumn6, this.dataGridViewTextBoxColumn7 });
+            this.collectionDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.dataGridViewCheckBoxColumn1, this.dataGridViewTextBoxColumn1, this.lottery_id, this.dataGridViewTextBoxColumn2, this.Column1, this.dataGridViewTextBoxColumn5, this.dataGridViewTextBoxColumn6, this.dataGridViewTextBoxColumn7 });
             this.collectionDataGrid.Location = new System.Drawing.Point(0, 0);
             this.collectionDataGrid.Name = "collectionDataGrid";
             this.collectionDataGrid.ReadOnly = true;
@@ -351,6 +412,14 @@ namespace BilibiliSuitDownloader {
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn1.Width = 90;
+            // 
+            // lottery_id
+            // 
+            this.lottery_id.HeaderText = "抽奖ID";
+            this.lottery_id.Name = "lottery_id";
+            this.lottery_id.ReadOnly = true;
+            this.lottery_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.lottery_id.Width = 90;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -424,75 +493,6 @@ namespace BilibiliSuitDownloader {
             this.checkedListBox1.Size = new System.Drawing.Size(194, 224);
             this.checkedListBox1.TabIndex = 27;
             // 
-            // check_for_download
-            // 
-            this.check_for_download.HeaderText = "";
-            this.check_for_download.Name = "check_for_download";
-            this.check_for_download.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.check_for_download.Width = 25;
-            // 
-            // item_id
-            // 
-            this.item_id.HeaderText = "商品ID";
-            this.item_id.Name = "item_id";
-            this.item_id.ReadOnly = true;
-            this.item_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.item_id.Width = 90;
-            // 
-            // lottery_id
-            // 
-            this.lottery_id.HeaderText = "抽奖ID";
-            this.lottery_id.Name = "lottery_id";
-            this.lottery_id.ReadOnly = true;
-            this.lottery_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.lottery_id.Width = 90;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "名称";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Width = 200;
-            // 
-            // group_id
-            // 
-            this.group_id.HeaderText = "分组";
-            this.group_id.Name = "group_id";
-            this.group_id.ReadOnly = true;
-            this.group_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.group_id.Width = 80;
-            // 
-            // owner
-            // 
-            this.owner.HeaderText = "所有者";
-            this.owner.Name = "owner";
-            this.owner.ReadOnly = true;
-            this.owner.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.owner.Width = 150;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "定价";
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            this.price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.price.Width = 70;
-            // 
-            // sale_surplus
-            // 
-            this.sale_surplus.HeaderText = "库存";
-            this.sale_surplus.Name = "sale_surplus";
-            this.sale_surplus.ReadOnly = true;
-            this.sale_surplus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.sale_surplus.Width = 70;
-            // 
-            // desc
-            // 
-            this.desc.HeaderText = "描述";
-            this.desc.Name = "desc";
-            this.desc.ReadOnly = true;
-            this.desc.Width = 500;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -538,14 +538,14 @@ namespace BilibiliSuitDownloader {
 
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridView collectionDataGrid;
-        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridView collectionDataGrid;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
 
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
