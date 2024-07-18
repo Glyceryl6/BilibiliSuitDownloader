@@ -12,6 +12,7 @@
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <Deterministic>true</Deterministic>
+        <ApplicationIcon>pinkDress.ico</ApplicationIcon>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,10 @@
     <ItemGroup>
         <Reference Include="BilibiliSuitDownloader">
           <HintPath>bin\Debug\BilibiliSuitDownloader.exe</HintPath>
+        </Reference>
+        <Reference Include="mscorlib" />
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
         </Reference>
         <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
           <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -85,6 +90,7 @@
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
         <None Include="packages.config" />
+        <None Include="pinkDress.ico" />
         <None Include="Properties\Settings.settings">
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,8 +105,9 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Resources\switch_off.png" />
-      <Content Include="Resources\switch_on.png" />
+        <EmbeddedResource Include="Newtonsoft.Json.dll" />
+        <Content Include="Resources\switch_off.png" />
+        <Content Include="Resources\switch_on.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

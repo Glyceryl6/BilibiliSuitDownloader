@@ -3,6 +3,7 @@
   &lt;Assembly Path="C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliSuitDownloader\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Core.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\mscorlib.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\glyceryl\Desktop\CSharpPlace\BilibiliSuitDownloader\BilibiliSuitDownloader\bin\Debug\BilibiliSuitDownloader.exe" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=BilibiliSuitDownloader_002FProperties_002FResources/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
