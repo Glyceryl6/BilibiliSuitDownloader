@@ -34,6 +34,10 @@ namespace BilibiliSuitDownloader {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textBox2 = new AntdUI.Input();
             this.button2 = new AntdUI.Button();
@@ -44,7 +48,6 @@ namespace BilibiliSuitDownloader {
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.suitDataGrid = new System.Windows.Forms.DataGridView();
@@ -85,6 +88,7 @@ namespace BilibiliSuitDownloader {
             this.button4 = new BilibiliSuitDownloader.BiliRadioButton();
             this.button3 = new BilibiliSuitDownloader.BiliRadioButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suitDataGrid)).BeginInit();
@@ -160,7 +164,7 @@ namespace BilibiliSuitDownloader {
             this.ExportSelectedSuitButton.Name = "ExportSelectedSuitButton";
             this.ExportSelectedSuitButton.Size = new System.Drawing.Size(130, 48);
             this.ExportSelectedSuitButton.TabIndex = 17;
-            this.ExportSelectedSuitButton.Text = "导出所选装扮";
+            this.ExportSelectedSuitButton.Text = "下载所选装扮";
             this.ExportSelectedSuitButton.Type = AntdUI.TTypeMini.Primary;
             this.ExportSelectedSuitButton.Click += new System.EventHandler(this.ExportSelectedSuitButton_Click);
             // 
@@ -174,7 +178,7 @@ namespace BilibiliSuitDownloader {
             this.ExportAllSuitButton.Name = "ExportAllSuitButton";
             this.ExportAllSuitButton.Size = new System.Drawing.Size(130, 48);
             this.ExportAllSuitButton.TabIndex = 16;
-            this.ExportAllSuitButton.Text = "导出所有装扮";
+            this.ExportAllSuitButton.Text = "下载所有装扮";
             this.ExportAllSuitButton.Type = AntdUI.TTypeMini.Primary;
             this.ExportAllSuitButton.Click += new System.EventHandler(this.ExportAllSuitButton_Click);
             // 
@@ -208,35 +212,26 @@ namespace BilibiliSuitDownloader {
             this.label4.TabIndex = 21;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.BackColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(616, 358);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(459, 32);
-            this.label5.TabIndex = 22;
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(24, 492);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1042, 380);
+            this.tabControl1.Size = new System.Drawing.Size(1055, 380);
             this.tabControl1.TabIndex = 23;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.suitDataGrid);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1034, 351);
+            this.tabPage1.Size = new System.Drawing.Size(1047, 348);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "普通装扮";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -251,6 +246,7 @@ namespace BilibiliSuitDownloader {
             this.suitDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
@@ -258,18 +254,26 @@ namespace BilibiliSuitDownloader {
             this.suitDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.suitDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.suitDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.check_for_download, this.item_id, this.name, this.group_name, this.owner, this.price, this.sale_surplus, this.desc });
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.suitDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.suitDataGrid.Location = new System.Drawing.Point(0, 0);
             this.suitDataGrid.Name = "suitDataGrid";
             this.suitDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.suitDataGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.suitDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.suitDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.suitDataGrid.RowTemplate.Height = 27;
             this.suitDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.suitDataGrid.ShowCellToolTips = false;
             this.suitDataGrid.ShowEditingIcon = false;
-            this.suitDataGrid.Size = new System.Drawing.Size(1028, 353);
+            this.suitDataGrid.Size = new System.Drawing.Size(1041, 350);
             this.suitDataGrid.TabIndex = 8;
             // 
             // check_for_download
@@ -336,10 +340,10 @@ namespace BilibiliSuitDownloader {
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.collectionDataGrid);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1034, 351);
+            this.tabPage2.Size = new System.Drawing.Size(1047, 348);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "收藏集";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -352,13 +356,14 @@ namespace BilibiliSuitDownloader {
             this.collectionDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.collectionDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.collectionDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.collectionDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.collectionDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.collectionDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.collectionDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.dataGridViewCheckBoxColumn1, this.dataGridViewTextBoxColumn1, this.lottery_id, this.dataGridViewTextBoxColumn2, this.Column1, this.dataGridViewTextBoxColumn5, this.dataGridViewTextBoxColumn6, this.dataGridViewTextBoxColumn7 });
             this.collectionDataGrid.Location = new System.Drawing.Point(0, 0);
@@ -366,13 +371,13 @@ namespace BilibiliSuitDownloader {
             this.collectionDataGrid.ReadOnly = true;
             this.collectionDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.collectionDataGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.collectionDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.collectionDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.collectionDataGrid.RowTemplate.Height = 27;
             this.collectionDataGrid.ShowCellToolTips = false;
             this.collectionDataGrid.ShowEditingIcon = false;
-            this.collectionDataGrid.Size = new System.Drawing.Size(1028, 353);
+            this.collectionDataGrid.Size = new System.Drawing.Size(1041, 354);
             this.collectionDataGrid.TabIndex = 9;
             // 
             // dataGridViewCheckBoxColumn1
@@ -446,7 +451,7 @@ namespace BilibiliSuitDownloader {
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(173, 48);
             this.button5.TabIndex = 25;
-            this.button5.Text = "导出所有收藏集";
+            this.button5.Text = "下载所有收藏集";
             this.button5.Type = AntdUI.TTypeMini.Primary;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -718,11 +723,35 @@ namespace BilibiliSuitDownloader {
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(616, 403);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.ShowCellToolTips = false;
@@ -731,6 +760,16 @@ namespace BilibiliSuitDownloader {
             this.dataGridView1.TabIndex = 29;
             this.dataGridView1.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(616, 359);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(459, 32);
+            this.label5.TabIndex = 30;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -738,13 +777,13 @@ namespace BilibiliSuitDownloader {
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1100, 900);
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowBar1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.progressBar1);
@@ -754,6 +793,7 @@ namespace BilibiliSuitDownloader {
             this.Controls.Add(this.button2);
             this.Controls.Add(this.QueryButton);
             this.Controls.Add(this.textBox1);
+            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(15, 15);
