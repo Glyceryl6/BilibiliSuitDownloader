@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,13 +15,15 @@ using Panel = AntdUI.Panel;
 
 namespace BilibiliSuitDownloader {
     
-    public partial class MainForm : AntdUI.Window {
+    public partial class MainForm : Form {
         
         [DllImport("kernel32.dll")]
         private static extern bool AllocConsole();
         
         [DllImport("kernel32.dll")]
         private static extern bool FreeConsole();
+
+        private readonly List<string> _exceptions = new List<string>();
         
         public MainForm() {
             InitializeComponent();
@@ -52,11 +54,6 @@ namespace BilibiliSuitDownloader {
             foreach (Control control in panel1.Controls) {
                 if (control is BiliRadioButton { Parent: Panel _ } button) {
                     button.BindingForm = this;
-                    if (button.BackColor != null) {
-                        Color color = button.BackColor.Value;
-                        button.BackActive = MiscUtils.ChangeColor(color, -0.15F);
-                        button.BackHover = MiscUtils.ChangeColor(color, 0.15F);
-                    }
                 }
             }
         }
@@ -101,7 +98,7 @@ namespace BilibiliSuitDownloader {
             for (int i = 0; i < rowCount; i++) {
                 DownloadSuitById(suitDataGrid[1, i].Value.ToString());
                 label4.Text = progressBar1.Value + 1 + @"/" + progressBar1.Maximum;
-                Thread.Sleep(i % 50 == 0 ? 3000 : 50);
+                Thread.Sleep(i % 10 == 0 ? 3000 : 50);
                 progressBar1.Value++;
             }
             
@@ -126,10 +123,12 @@ namespace BilibiliSuitDownloader {
                 label4.Text = progressBar1.Value + 1 + @"/" + progressBar1.Maximum;
                 //短时间内频繁访问同一个API链接会导致IP被短暂封禁，这里通过设置延迟以绕过风控
                 //除了这个地方之外，程序的其它地方也用了这段代码，作用相同
-                Thread.Sleep(i % 100 == 0 ? 2000 : 10);
+                Thread.Sleep(i % 50 == 0 ? 2000 : 10);
                 progressBar1.Value++;
             }
             
+            string logFilePath = Path.Combine(Application.StartupPath, "errors.log");
+            File.WriteAllLines(logFilePath, _exceptions);
             DownloadDone(startTime);
         }
 
@@ -212,7 +211,7 @@ namespace BilibiliSuitDownloader {
         //根据ID来下载装扮内容
         private void DownloadSuitById(string id) {
             string directory = textBox2.Text;
-            string biliUrl = "https://api.bilibili.com/x/garb/v2/mall/suit/detail?from=&from_id=&item_id=" + id + "&part=suit";
+            string biliUrl = "https://api.bilibili.com/x/garb/v2/mall/suit/detail?item_id=" + id + "&part=suit";
             JObject jObject = GetJsonFromUrl(biliUrl);
             if (jObject["code"] != null && int.Parse(jObject["code"].ToString()) == 0 && jObject["data"] != null) {
                 JToken suitItemsToken = jObject["data"]["suit_items"];
@@ -222,7 +221,6 @@ namespace BilibiliSuitDownloader {
                 string group = GetGroupSubTabs()[int.Parse(jObject["data"]["group_id"]?.ToString() ?? "0")].ToString();
                 directory += (directory.EndsWith("\\") ? "" : "\\") + group + "\\" + itemName + "\\";
                 label3.Text = @"装扮名称：" + itemName;
-                WebClient webClient = new WebClient();
                 if (!Directory.Exists(directory)) {
                     Directory.CreateDirectory(directory);
                 }
@@ -237,79 +235,107 @@ namespace BilibiliSuitDownloader {
                     }
                     
                     if (!isEmojiPackage) {
-                        //下载装扮中除了表情包之外的其它部分，并根据json的对象名创建并下载至相应的文件夹
-                        JToken tempToken = suitItemsToken[paths.Last()];
-                        JArray suitArray = JArray.Parse(tempToken.ToString());
-                        foreach (JToken token1 in suitArray) {
-                            JToken properties = token1["properties"];
-                            foreach (JToken token2 in properties) {
-                                string objects = token2.Path.Split('.').Last();
-                                string link = properties[objects]?.ToString();
-                                Regex regex = new Regex("((http|https)://)");
-                                if (link?.Length > 0 && regex.Match(link).Success) {
-                                    int lastIndex = link.LastIndexOf("/", StringComparison.Ordinal);
-                                    string filename = path + link.Substring(lastIndex).Trim('/');
-                                    if (!File.Exists(filename)) {
-                                        if (link.Contains("hdslb.com")) {
-                                            webClient.DownloadFile(link, filename);
-                                            OutPutInfoToTerminal(link, filename);
-                                        } else {
-                                            int i = filename.IndexOf('?');
-                                            filename = filename.Remove(i) + ".txt";
-                                            File.WriteAllText(filename, link);
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        DownloadNonEmojiPackageFromSuit(suitItemsToken, paths, path);
                     } else {
-                        //下载装扮中的表情包部分
-                        JArray emojiArray = JArray.Parse(suitItemsToken["emoji_package"].ToString());
-                        foreach (JToken token1 in emojiArray) {
-                            JArray itemArray = JArray.Parse(token1["items"].ToString());
-                            foreach (JToken itemToken in itemArray) {
-                                //移除获取到的表情包的名称中的方括号（[]）
-                                string emojiName = itemToken["name"]?.ToString().Replace("[", "").Replace("]", "");
-                                string link = itemToken["properties"]?["image"]?.ToString();
-                                //TODO: 这个替换非法字符的功能后续有待改进
-                                if (emojiName != null && emojiName.Contains("?")) {
-                                    emojiName = emojiName.Replace("?", "？");
-                                }
-                                string filename = directory + emojiName + ".png";
-                                if (link != null && !File.Exists(filename)) {
-                                    webClient.DownloadFile(link, filename);
-                                    OutPutInfoToTerminal(link, filename);
-                                }
+                        DownloadEmojiPackageFromSuit(suitItemsToken, directory);
+                    }
+                }
+            }
+        }
+
+        //下载装扮中除了表情包之外的其它部分，并根据json的对象名创建并下载至相应的文件夹
+        private void DownloadNonEmojiPackageFromSuit(JToken suitItemsToken, string[] paths, string path) {
+            WebClient webClient = new WebClient();
+            JToken tempToken = suitItemsToken[paths.Last()];
+            JArray suitArray = JArray.Parse(tempToken.ToString());
+            foreach (JToken token1 in suitArray) {
+                JToken properties = token1["properties"];
+                if (properties == null) continue;
+                foreach (JToken token2 in properties) {
+                    string objects = token2.Path.Split('.').Last();
+                    string link = properties[objects]?.ToString();
+                    Regex regex = new Regex("((http|https)://)");
+                    if (link?.Length > 0 && regex.Match(link).Success) {
+                        int lastIndex = link.LastIndexOf("/", StringComparison.Ordinal);
+                        string filename = path + link.Substring(lastIndex).Trim('/');
+                        if (!File.Exists(filename)) {
+                            if (link.Contains("hdslb.com")) {
+                                webClient.DownloadFile(link, filename);
+                                OutPutInfoToTerminal(link, filename);
+                            } else {
+                                int i = filename.IndexOf('?');
+                                filename = filename.Remove(i) + ".txt";
+                                File.WriteAllText(filename, link);
                             }
+                        } else {
+                            Console.WriteLine(@"文件：“" + filename + @"”已存在，跳过下载。");
                         }
                     }
                 }
             }
         }
 
-        //获取收藏集的ID、抽奖ID、活动名和售价
+        //下载装扮中的表情包部分
+        private void DownloadEmojiPackageFromSuit(JToken suitItemsToken, string directory) {
+            WebClient webClient = new WebClient();
+            JArray emojiArray = JArray.Parse(suitItemsToken["emoji_package"].ToString());
+            foreach (JToken token1 in emojiArray) {
+                JArray itemArray = JArray.Parse(token1["items"].ToString());
+                foreach (JToken itemToken in itemArray) {
+                    //移除获取到的表情包的名称中的方括号（[]）
+                    string emojiName = itemToken["name"]?.ToString().Trim('[', ']');
+                    string link = itemToken["properties"]?["image"]?.ToString();
+                    //TODO: 这个替换非法字符的功能后续有待改进
+                    if (emojiName != null && emojiName.Contains("?")) {
+                        emojiName = emojiName.Replace("?", "？");
+                    }
+                    
+                    string filename = directory + emojiName + ".png";
+                    if (link == null) continue;
+                    if (!File.Exists(filename)) {
+                        webClient.DownloadFile(link, filename);
+                        OutPutInfoToTerminal(link, filename);
+                    } else {
+                        Console.WriteLine(@"文件：“" + filename + @"”已存在，跳过下载。");
+                    }
+                }
+            }
+        }
+
+        //获取所有收藏集的信息（ID、抽奖ID、活动名和售价）
         private void GetCollectionData() {
-            JObject jObject = GetJsonFromUrl("https://api.bilibili.com/x/garb/card/subject/list?subject_id=42");
-            if (jObject["code"] == null || int.Parse(jObject["code"].ToString()) != 0) return;
-            JArray subjectCardList = JArray.Parse(jObject["data"]["subject_card_list"].ToString());
-            collectionDataGrid.Rows.Add(subjectCardList.Count);
-            for (int i = 0; i < subjectCardList.Count; i++) {
-                JObject tempObject = JObject.Parse(subjectCardList[i].ToString());
+            var collectionArray = new JArray();
+            var site = 0;
+            while (true) {
+                var jObject = GetJsonFromUrl("https://api.bilibili.com/x/vas/dlc_act/act/list?scene=1&site=" + site);
+                if (jObject["code"] == null || int.Parse(jObject["code"].ToString()) != 0) continue;
+                var listToken = jObject["data"]?["list"];
+                var isMoreToken = jObject["data"]?["is_more"];
+                if (listToken != null && isMoreToken != null && bool.Parse(isMoreToken.ToString())) {
+                    collectionArray.Merge(JArray.Parse(listToken.ToString()));
+                    site += 20;
+                } else {
+                    break;
+                }
+            }
+
+            collectionDataGrid.Rows.Add(collectionArray.Count);
+            for (var i = 0; i < collectionArray.Count; i++) {
+                var tempObject = JObject.Parse(collectionArray[i].ToString());
                 var actId = tempObject["act_id"]?.ToString();
                 var lotteryId = tempObject["lottery_id"]?.ToString();
                 var salePrice = tempObject["sale_price"]?.ToString();
                 collectionDataGrid[1, i].Value = actId;
                 collectionDataGrid[2, i].Value = lotteryId;
-                collectionDataGrid[3, i].Value = tempObject["act_name"]?.ToString();
+                collectionDataGrid[3, i].Value = tempObject["act_name"]?.ToString().Trim();
                 collectionDataGrid[5, i].Value = (salePrice != null ? int.Parse(salePrice) : 0) / 100 + "元";
                 GetCollectionDetail(actId, lotteryId, i);
-                Thread.Sleep(i % 50 == 0 ? 2000 : 50);
             }
         }
 
         //获取收藏集的活动名字、总销量和抽奖信息
         private void GetCollectionDetail(string actId, string lotteryId, int rowIndex) {
-            JObject jObject = GetJsonFromUrl("https://api.bilibili.com/x/vas/dlc_act/lottery/detail?act_id=" + actId + "&lottery_id=" + lotteryId);
+            var jObject = GetJsonFromUrl("https://api.bilibili.com/x/vas/dlc_act/lottery/detail?act_id=" + actId + "&lottery_id=" + lotteryId);
             if (jObject["code"] == null || int.Parse(jObject["code"].ToString()) != 0) return;
             collectionDataGrid[4, rowIndex].Value = jObject["data"]?["name"]?.ToString();
             collectionDataGrid[6, rowIndex].Value = jObject["data"]?["total_sale_amount"]?.ToString();
@@ -342,13 +368,15 @@ namespace BilibiliSuitDownloader {
                             if (!File.Exists(filename)) {
                                 webClient.DownloadFile(cardImg, filename);
                                 OutPutInfoToTerminal(cardImg, filename);
+                            } else {
+                                Console.WriteLine(@"文件：“" + filename + @"”已存在，跳过下载。");
                             }
                         }
 
                         JToken cardTypeToken = tempObject["card_type"];
                         if (cardTypeToken != null && cardTypeToken.ToString().Equals("2") && tempObject["video_list"] != null) {
                             JArray videoList = JArray.Parse(tempObject["video_list"].ToString());
-                            DownloadStreaming(webClient, videoList[0].ToString(), directory + cardName);
+                            DownloadStreaming(videoList[0].ToString(), directory + cardName);
                         }
                     }
                 }
@@ -375,7 +403,7 @@ namespace BilibiliSuitDownloader {
                                 if (!string.IsNullOrEmpty(list)) {
                                     string animationVideoUrl = JArray.Parse(list)[0].ToString();
                                     string filename = directory + "collect_infos\\" + FilenameThatRemoveAllInvalidChars(cardName);
-                                    DownloadStreaming(webClient, animationVideoUrl, filename);
+                                    DownloadStreaming(animationVideoUrl, filename);
                                 }
                             }
                         }
@@ -392,6 +420,8 @@ namespace BilibiliSuitDownloader {
                             if (!File.Exists(filename)) {
                                 webClient.DownloadFile(redeemItemImage, filename);
                                 OutPutInfoToTerminal(redeemItemImage, filename);
+                            } else {
+                                Console.WriteLine(@"文件：“" + filename + @"”已存在，跳过下载。");
                             }
                         }
                     }
@@ -408,13 +438,12 @@ namespace BilibiliSuitDownloader {
                             redeemItemName += Path.GetExtension(segments.Last());
                             string newDir = directory + "collect_chain\\";
                             string filename = newDir + FilenameThatRemoveAllInvalidChars(redeemItemName);
-                            if (!Directory.Exists(newDir)) {
-                                Directory.CreateDirectory(newDir);
-                            }
-                            
+                            if (!Directory.Exists(newDir)) Directory.CreateDirectory(newDir);
                             if (!File.Exists(filename)) {
                                 webClient.DownloadFile(redeemItemImage, filename);
                                 OutPutInfoToTerminal(redeemItemImage, filename);
+                            } else {
+                                Console.WriteLine(@"文件：“" + filename + @"”已存在，跳过下载。");
                             }
                         }
                     }
@@ -424,7 +453,7 @@ namespace BilibiliSuitDownloader {
 
         //下载收藏集的封面图
         private void DownloadCollectionCover(WebClient webClient, string actId, string directory) {
-            JObject jObject = GetJsonFromUrl("https://api.bilibili.com/x/vas/dlc_act/act/basic?act_id=" + actId);
+            var jObject = GetJsonFromUrl("https://api.bilibili.com/x/vas/dlc_act/act/basic?act_id=" + actId);
             if (jObject["code"] == null || int.Parse(jObject["code"].ToString()) != 0) return;
             JArray lotteryList = JArray.Parse(jObject["data"]["lottery_list"].ToString());
             string lotteryImage = lotteryList[0]["lottery_image"]?.ToString();
@@ -502,15 +531,31 @@ namespace BilibiliSuitDownloader {
         }
 
         //下载流媒体文件
-        private void DownloadStreaming(WebClient webClient, string link, string filename) {
+        private void DownloadStreaming(string link, string filename) {
             try {
-                if (File.Exists(filename + ".mp4")) return;
-                webClient.DownloadFile(link, filename + ".mp4");
+                if (File.Exists(filename + ".mp4")) {
+                    Console.WriteLine(@"文件：“" + filename + @".mp4" + @"”已存在，跳过下载。");
+                    return;
+                }
+                
+                string fullPath = Path.Combine(Application.StartupPath, @"wget.exe");
+                string arguments = @"-O " + @"""" + filename + ".mp4" + @"""" + " " + link;
+                ProcessStartInfo startInfo = new ProcessStartInfo {
+                    FileName = fullPath,
+                    Arguments = arguments,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                using Process process = new Process();
+                process.StartInfo = startInfo;
+                process.Start();
+                process.WaitForExit();
                 OutPutInfoToTerminal(link, filename + ".mp4");
-            } catch (Exception) {
-                if (File.Exists(filename + ".txt")) return;
-                Console.WriteLine(@"资源下载失败，正在将链接保存为：" + filename + @".txt");
-                File.WriteAllText(filename + ".txt", link);
+            } catch (Exception e) {
+                Console.Error.WriteLine(e);
+                _exceptions.Add(e.Message);
             }
         }
 
@@ -526,8 +571,8 @@ namespace BilibiliSuitDownloader {
             }
             
             string sizeString = $"{fileSize:0.0} {sizes[order]}";
-            label5.Text = @"正在将：" + @"""" + link + @"""" + @" 下载至：" + @"""" + filename + @"""";
-            Console.WriteLine(@"(" + label4.Text + @") " + label5.Text + @" [" + sizeString + @"]");
+            string info = @"正在将：" + @"""" + link + @"""" + @" 下载至：" + @"""" + filename + @"""";
+            Console.WriteLine(string.Concat("(", label4.Text, ") ", info, " [", sizeString, "]"));
         }
         
     }

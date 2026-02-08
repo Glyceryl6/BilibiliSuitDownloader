@@ -35,9 +35,6 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="AntdUI">
-          <HintPath>bin\Debug\AntdUI.dll</HintPath>
-        </Reference>
         <Reference Include="AntdUI, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\AntdUI.1.4.5\lib\net48\AntdUI.dll</HintPath>
         </Reference>
@@ -50,6 +47,7 @@
         </Reference>
         <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
             <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />

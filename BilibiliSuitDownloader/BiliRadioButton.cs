@@ -10,7 +10,7 @@ namespace BilibiliSuitDownloader {
     
     public class BiliRadioButton : Button {
 
-        private AntdUI.Window? _bindingForm;
+        private Form? _bindingForm;
         private Color _checkColor;
         private Color _uncheckColor;
         private bool _checked;
@@ -20,7 +20,7 @@ namespace BilibiliSuitDownloader {
         [Category("数据")]
         [DefaultValue(null)]
         [Browsable(true)]
-        public AntdUI.Window? BindingForm {
+        public Form? BindingForm {
             set {
                 _bindingForm = value;
                 Invalidate();
