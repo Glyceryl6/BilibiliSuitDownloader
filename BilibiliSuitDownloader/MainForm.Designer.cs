@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -39,18 +39,39 @@ namespace BilibiliSuitDownloader {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.QueryButton = new System.Windows.Forms.Button();
+            this.GetSuitDataButton = new System.Windows.Forms.Button();
+            this.QuerySuitButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ExportSelectedSuitButton = new System.Windows.Forms.Button();
-            this.ExportAllSuitButton = new System.Windows.Forms.Button();
+            this.DownloadAllSuitButton = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.suitDataGrid = new System.Windows.Forms.DataGridView();
+            this.check_for_download = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.item_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.group_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sale_surplus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.StopGetSuitButton = new System.Windows.Forms.Button();
+            this.PauseGetSuitButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.GetCollectionDataButton = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.collectionDataGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,8 +81,6 @@ namespace BilibiliSuitDownloader {
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button18 = new BilibiliSuitDownloader.BiliRadioButton();
             this.button17 = new BilibiliSuitDownloader.BiliRadioButton();
@@ -78,16 +97,6 @@ namespace BilibiliSuitDownloader {
             this.button4 = new BilibiliSuitDownloader.BiliRadioButton();
             this.button3 = new BilibiliSuitDownloader.BiliRadioButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.check_for_download = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.item_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.group_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sale_surplus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suitDataGrid)).BeginInit();
@@ -102,44 +111,44 @@ namespace BilibiliSuitDownloader {
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox2.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.textBox2.Location = new System.Drawing.Point(220, 70);
+            this.textBox2.Location = new System.Drawing.Point(209, 61);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(379, 29);
+            this.textBox2.Size = new System.Drawing.Size(408, 29);
             this.textBox2.TabIndex = 15;
             // 
-            // button2
+            // GetSuitDataButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(760, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 32);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "获取装扮数据";
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.GetSuitDataButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GetSuitDataButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.GetSuitDataButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.GetSuitDataButton.Location = new System.Drawing.Point(773, 60);
+            this.GetSuitDataButton.Name = "GetSuitDataButton";
+            this.GetSuitDataButton.Size = new System.Drawing.Size(130, 32);
+            this.GetSuitDataButton.TabIndex = 13;
+            this.GetSuitDataButton.Text = "获取装扮数据";
+            this.GetSuitDataButton.Click += new System.EventHandler(this.GetSuitDataButton_Click);
             // 
-            // QueryButton
+            // QuerySuitButton
             // 
-            this.QueryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.QueryButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.QueryButton.Enabled = false;
-            this.QueryButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.QueryButton.Location = new System.Drawing.Point(615, 22);
-            this.QueryButton.Name = "QueryButton";
-            this.QueryButton.Size = new System.Drawing.Size(130, 32);
-            this.QueryButton.TabIndex = 12;
-            this.QueryButton.Text = "点击查询";
-            this.QueryButton.Click += new System.EventHandler(this.QueryButton_Click);
+            this.QuerySuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.QuerySuitButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.QuerySuitButton.Enabled = false;
+            this.QuerySuitButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.QuerySuitButton.Location = new System.Drawing.Point(773, 18);
+            this.QuerySuitButton.Name = "QuerySuitButton";
+            this.QuerySuitButton.Size = new System.Drawing.Size(130, 32);
+            this.QuerySuitButton.TabIndex = 12;
+            this.QuerySuitButton.Text = "点击查询";
+            this.QuerySuitButton.Click += new System.EventHandler(this.QuerySuitButton_Click);
             // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.textBox1.Location = new System.Drawing.Point(220, 22);
+            this.textBox1.Location = new System.Drawing.Point(209, 19);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(380, 29);
+            this.textBox1.Size = new System.Drawing.Size(408, 29);
             this.textBox1.TabIndex = 11;
             // 
             // ExportSelectedSuitButton
@@ -148,55 +157,45 @@ namespace BilibiliSuitDownloader {
             this.ExportSelectedSuitButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ExportSelectedSuitButton.Enabled = false;
             this.ExportSelectedSuitButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.ExportSelectedSuitButton.Location = new System.Drawing.Point(615, 69);
+            this.ExportSelectedSuitButton.Location = new System.Drawing.Point(909, 18);
             this.ExportSelectedSuitButton.Name = "ExportSelectedSuitButton";
             this.ExportSelectedSuitButton.Size = new System.Drawing.Size(130, 32);
             this.ExportSelectedSuitButton.TabIndex = 17;
             this.ExportSelectedSuitButton.Text = "下载所选装扮";
             this.ExportSelectedSuitButton.Click += new System.EventHandler(this.ExportSelectedSuitButton_Click);
             // 
-            // ExportAllSuitButton
+            // DownloadAllSuitButton
             // 
-            this.ExportAllSuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportAllSuitButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExportAllSuitButton.Enabled = false;
-            this.ExportAllSuitButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.ExportAllSuitButton.Location = new System.Drawing.Point(760, 69);
-            this.ExportAllSuitButton.Name = "ExportAllSuitButton";
-            this.ExportAllSuitButton.Size = new System.Drawing.Size(130, 32);
-            this.ExportAllSuitButton.TabIndex = 16;
-            this.ExportAllSuitButton.Text = "下载所有装扮";
-            this.ExportAllSuitButton.Click += new System.EventHandler(this.ExportAllSuitButton_Click);
+            this.DownloadAllSuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DownloadAllSuitButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DownloadAllSuitButton.Enabled = false;
+            this.DownloadAllSuitButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.DownloadAllSuitButton.Location = new System.Drawing.Point(909, 60);
+            this.DownloadAllSuitButton.Name = "DownloadAllSuitButton";
+            this.DownloadAllSuitButton.Size = new System.Drawing.Size(130, 32);
+            this.DownloadAllSuitButton.TabIndex = 16;
+            this.DownloadAllSuitButton.Text = "下载所有装扮";
+            this.DownloadAllSuitButton.Click += new System.EventHandler(this.DownloadAllSuitButton_Click);
             // 
             // progressBar1
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.ForeColor = System.Drawing.Color.LimeGreen;
-            this.progressBar1.Location = new System.Drawing.Point(619, 122);
+            this.progressBar1.Location = new System.Drawing.Point(593, 22);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(459, 32);
+            this.progressBar1.Size = new System.Drawing.Size(485, 32);
             this.progressBar1.TabIndex = 19;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(619, 167);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(459, 32);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "装扮名称：";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(619, 209);
+            this.label4.Location = new System.Drawing.Point(593, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(459, 32);
+            this.label4.Size = new System.Drawing.Size(485, 32);
             this.label4.TabIndex = 21;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Visible = false;
             // 
             // tabControl1
             // 
@@ -204,23 +203,67 @@ namespace BilibiliSuitDownloader {
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabControl1.Location = new System.Drawing.Point(23, 293);
+            this.tabControl1.Location = new System.Drawing.Point(23, 194);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1055, 460);
+            this.tabControl1.Size = new System.Drawing.Size(1059, 559);
             this.tabControl1.TabIndex = 23;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button21);
+            this.tabPage1.Controls.Add(this.button20);
+            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.suitDataGrid);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.ExportSelectedSuitButton);
+            this.tabPage1.Controls.Add(this.QuerySuitButton);
+            this.tabPage1.Controls.Add(this.GetSuitDataButton);
+            this.tabPage1.Controls.Add(this.DownloadAllSuitButton);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1047, 428);
+            this.tabPage1.Size = new System.Drawing.Size(1051, 527);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "普通装扮";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button21.Enabled = false;
+            this.button21.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.button21.Location = new System.Drawing.Point(637, 60);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(130, 32);
+            this.button21.TabIndex = 33;
+            this.button21.Text = "终止获取";
+            // 
+            // button20
+            // 
+            this.button20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button20.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button20.Enabled = false;
+            this.button20.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.button20.Location = new System.Drawing.Point(637, 18);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(130, 32);
+            this.button20.TabIndex = 32;
+            this.button20.Text = "暂停获取";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(12, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(191, 29);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "请输入需要导出的路径：";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // suitDataGrid
             // 
@@ -240,7 +283,7 @@ namespace BilibiliSuitDownloader {
             this.suitDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.suitDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.suitDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.check_for_download, this.item_id, this.name, this.group_name, this.owner, this.price, this.sale_surplus, this.desc });
-            this.suitDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.suitDataGrid.Location = new System.Drawing.Point(0, 109);
             this.suitDataGrid.Name = "suitDataGrid";
             this.suitDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.suitDataGrid.RowHeadersVisible = false;
@@ -251,19 +294,215 @@ namespace BilibiliSuitDownloader {
             this.suitDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.suitDataGrid.ShowCellToolTips = false;
             this.suitDataGrid.ShowEditingIcon = false;
-            this.suitDataGrid.Size = new System.Drawing.Size(1041, 430);
+            this.suitDataGrid.Size = new System.Drawing.Size(1045, 415);
             this.suitDataGrid.TabIndex = 8;
+            this.suitDataGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.suitDataGrid_CellFormatting);
+            this.suitDataGrid.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.suitDataGrid_DataError);
+            // 
+            // check_for_download
+            // 
+            this.check_for_download.HeaderText = "";
+            this.check_for_download.Name = "check_for_download";
+            this.check_for_download.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.check_for_download.Width = 25;
+            // 
+            // item_id
+            // 
+            this.item_id.HeaderText = "商品ID";
+            this.item_id.Name = "item_id";
+            this.item_id.ReadOnly = true;
+            this.item_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.item_id.Width = 90;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "名称";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 200;
+            // 
+            // group_name
+            // 
+            this.group_name.HeaderText = "分组";
+            this.group_name.Name = "group_name";
+            this.group_name.ReadOnly = true;
+            this.group_name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.group_name.Width = 80;
+            // 
+            // owner
+            // 
+            this.owner.HeaderText = "所有者";
+            this.owner.Name = "owner";
+            this.owner.ReadOnly = true;
+            this.owner.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.owner.Width = 150;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "定价";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            this.price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.price.Width = 70;
+            // 
+            // sale_surplus
+            // 
+            this.sale_surplus.HeaderText = "库存";
+            this.sale_surplus.Name = "sale_surplus";
+            this.sale_surplus.ReadOnly = true;
+            this.sale_surplus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.sale_surplus.Width = 70;
+            // 
+            // desc
+            // 
+            this.desc.HeaderText = "描述";
+            this.desc.Name = "desc";
+            this.desc.ReadOnly = true;
+            this.desc.Width = 500;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 29);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "请输入需要查询的装扮：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.StopGetSuitButton);
+            this.tabPage2.Controls.Add(this.PauseGetSuitButton);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.GetCollectionDataButton);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.button19);
             this.tabPage2.Controls.Add(this.collectionDataGrid);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1047, 407);
+            this.tabPage2.Size = new System.Drawing.Size(1051, 527);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "收藏集";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // StopGetSuitButton
+            // 
+            this.StopGetSuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.StopGetSuitButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.StopGetSuitButton.Enabled = false;
+            this.StopGetSuitButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.StopGetSuitButton.Location = new System.Drawing.Point(593, 60);
+            this.StopGetSuitButton.Name = "StopGetSuitButton";
+            this.StopGetSuitButton.Size = new System.Drawing.Size(130, 32);
+            this.StopGetSuitButton.TabIndex = 41;
+            this.StopGetSuitButton.Text = "终止获取";
+            // 
+            // PauseGetSuitButton
+            // 
+            this.PauseGetSuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PauseGetSuitButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PauseGetSuitButton.Enabled = false;
+            this.PauseGetSuitButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.PauseGetSuitButton.Location = new System.Drawing.Point(593, 18);
+            this.PauseGetSuitButton.Name = "PauseGetSuitButton";
+            this.PauseGetSuitButton.Size = new System.Drawing.Size(130, 32);
+            this.PauseGetSuitButton.TabIndex = 40;
+            this.PauseGetSuitButton.Text = "暂停获取";
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(12, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(206, 29);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "请输入需要导出的路径：";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(12, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(206, 29);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "请输入需要查询的收藏集：";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // GetCollectionDataButton
+            // 
+            this.GetCollectionDataButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GetCollectionDataButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.GetCollectionDataButton.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.GetCollectionDataButton.Location = new System.Drawing.Point(729, 60);
+            this.GetCollectionDataButton.Name = "GetCollectionDataButton";
+            this.GetCollectionDataButton.Size = new System.Drawing.Size(130, 32);
+            this.GetCollectionDataButton.TabIndex = 24;
+            this.GetCollectionDataButton.Text = "获取收藏集数据";
+            this.GetCollectionDataButton.Click += new System.EventHandler(this.GetCollectionDataButton_Click);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Enabled = false;
+            this.button5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.button5.Location = new System.Drawing.Point(865, 60);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(174, 32);
+            this.button5.TabIndex = 25;
+            this.button5.Text = "下载所有收藏集";
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBox3.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.textBox3.Location = new System.Drawing.Point(224, 61);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(351, 29);
+            this.textBox3.TabIndex = 35;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBox4.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.textBox4.Location = new System.Drawing.Point(224, 19);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(351, 29);
+            this.textBox4.TabIndex = 32;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Enabled = false;
+            this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(865, 18);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(174, 32);
+            this.button1.TabIndex = 37;
+            this.button1.Text = "下载所选收藏集";
+            // 
+            // button19
+            // 
+            this.button19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button19.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button19.Enabled = false;
+            this.button19.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.button19.Location = new System.Drawing.Point(729, 18);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(130, 32);
+            this.button19.TabIndex = 33;
+            this.button19.Text = "点击查询";
             // 
             // collectionDataGrid
             // 
@@ -283,7 +522,7 @@ namespace BilibiliSuitDownloader {
             this.collectionDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.collectionDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.collectionDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.dataGridViewCheckBoxColumn1, this.dataGridViewTextBoxColumn1, this.lottery_id, this.dataGridViewTextBoxColumn2, this.Column1, this.dataGridViewTextBoxColumn5, this.dataGridViewTextBoxColumn6, this.dataGridViewTextBoxColumn7 });
-            this.collectionDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.collectionDataGrid.Location = new System.Drawing.Point(0, 109);
             this.collectionDataGrid.Name = "collectionDataGrid";
             this.collectionDataGrid.ReadOnly = true;
             this.collectionDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -294,7 +533,7 @@ namespace BilibiliSuitDownloader {
             this.collectionDataGrid.RowTemplate.Height = 27;
             this.collectionDataGrid.ShowCellToolTips = false;
             this.collectionDataGrid.ShowEditingIcon = false;
-            this.collectionDataGrid.Size = new System.Drawing.Size(1041, 413);
+            this.collectionDataGrid.Size = new System.Drawing.Size(1045, 415);
             this.collectionDataGrid.TabIndex = 9;
             // 
             // dataGridViewCheckBoxColumn1
@@ -358,31 +597,6 @@ namespace BilibiliSuitDownloader {
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Width = 500;
             // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Enabled = false;
-            this.button5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.button5.Location = new System.Drawing.Point(905, 69);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(173, 32);
-            this.button5.TabIndex = 25;
-            this.button5.Text = "下载所有收藏集";
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.button6.Location = new System.Drawing.Point(905, 22);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(173, 32);
-            this.button6.TabIndex = 24;
-            this.button6.Text = "获取收藏集数据";
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
@@ -402,7 +616,7 @@ namespace BilibiliSuitDownloader {
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Enabled = false;
-            this.panel1.Location = new System.Drawing.Point(27, 122);
+            this.panel1.Location = new System.Drawing.Point(27, 22);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(551, 153);
             this.panel1.TabIndex = 28;
@@ -613,7 +827,7 @@ namespace BilibiliSuitDownloader {
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(619, 248);
+            this.dataGridView1.Location = new System.Drawing.Point(593, 122);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -628,113 +842,21 @@ namespace BilibiliSuitDownloader {
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(459, 27);
+            this.dataGridView1.Size = new System.Drawing.Size(485, 27);
             this.dataGridView1.TabIndex = 29;
             this.dataGridView1.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(23, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 29);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "请输入需要查询的装扮：";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(23, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 29);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "请输入需要导出的路径：";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // check_for_download
-            // 
-            this.check_for_download.HeaderText = "";
-            this.check_for_download.Name = "check_for_download";
-            this.check_for_download.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.check_for_download.Width = 25;
-            // 
-            // item_id
-            // 
-            this.item_id.HeaderText = "商品ID";
-            this.item_id.Name = "item_id";
-            this.item_id.ReadOnly = true;
-            this.item_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.item_id.Width = 90;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "名称";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Width = 200;
-            // 
-            // group_name
-            // 
-            this.group_name.HeaderText = "分组";
-            this.group_name.Name = "group_name";
-            this.group_name.ReadOnly = true;
-            this.group_name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.group_name.Width = 80;
-            // 
-            // owner
-            // 
-            this.owner.HeaderText = "所有者";
-            this.owner.Name = "owner";
-            this.owner.ReadOnly = true;
-            this.owner.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.owner.Width = 150;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "定价";
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            this.price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.price.Width = 70;
-            // 
-            // sale_surplus
-            // 
-            this.sale_surplus.HeaderText = "库存";
-            this.sale_surplus.Name = "sale_surplus";
-            this.sale_surplus.ReadOnly = true;
-            this.sale_surplus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.sale_surplus.Width = 70;
-            // 
-            // desc
-            // 
-            this.desc.HeaderText = "描述";
-            this.desc.Name = "desc";
-            this.desc.ReadOnly = true;
-            this.desc.Width = 500;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1100, 765);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1104, 765);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.ExportSelectedSuitButton);
-            this.Controls.Add(this.ExportAllSuitButton);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.QueryButton);
-            this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -742,19 +864,31 @@ namespace BilibiliSuitDownloader {
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "B站个性装扮数据查询工具";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.BindingDataGridViewToButton);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.SizeChanged += new System.EventHandler(this.FixLastColumnWidth);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suitDataGrid)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.collectionDataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button StopGetSuitButton;
+        private System.Windows.Forms.Button PauseGetSuitButton;
+
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button19;
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -790,7 +924,7 @@ namespace BilibiliSuitDownloader {
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
 
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button GetCollectionDataButton;
 
         private System.Windows.Forms.TabControl tabControl1;
         
@@ -800,7 +934,6 @@ namespace BilibiliSuitDownloader {
         private System.Windows.Forms.Label label4;
 
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label3;
 
         private System.Windows.Forms.DataGridViewCheckBoxColumn check_for_download;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
@@ -812,11 +945,11 @@ namespace BilibiliSuitDownloader {
         private System.Windows.Forms.DataGridViewTextBoxColumn owner;
 
         private System.Windows.Forms.Button ExportSelectedSuitButton;
-        private System.Windows.Forms.Button ExportAllSuitButton;
+        private System.Windows.Forms.Button DownloadAllSuitButton;
 
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button QueryButton;
+        private System.Windows.Forms.Button GetSuitDataButton;
+        private System.Windows.Forms.Button QuerySuitButton;
         private System.Windows.Forms.TextBox textBox1;
 
         public System.Windows.Forms.DataGridView suitDataGrid;
